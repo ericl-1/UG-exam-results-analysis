@@ -782,8 +782,8 @@ tr.row-expand td{border-top:none!important}
 "use strict";
 
 // ── App version — single source of truth ─────────────────────────────────
-var APP_VERSION = '1.4-dev';
-var APP_BUILD   = '20260617-02';
+var APP_VERSION = '1.4';
+var APP_BUILD   = '20260617-03';
 
 // ── Guide toggle ──────────────────────────────────────────────────────────
 function toggleGuide() {
@@ -4012,33 +4012,22 @@ document.addEventListener('click', function(e) {
 // ── Release Notes ─────────────────────────────────────────────────────────
 var RELEASE_NOTES = [
   {
-    version: '1.4-dev',
+    version: '1.4',
     builds: [
       {
-        build: '20260617-02',
+        build: '20260617-03',
         date:  'June 17, 2026',
         notes: [
-          'Modernized setup screen — borderless layout with light garnet header strips replacing grey card boxes',
-          'Step badges redesigned as pill labels ("Step 1 / 2 / 3") — white fill, garnet border, bold black font',
-          'Accordion sections updated — + / − icon moved left of title, no background fill, no separator between accordions',
-          'Thick charcoal separator added between accordion area and Setup & Configuration section',
-          'Upload zones redesigned with dashed border on white, inner icon boxes removed',
-          'Run Analysis bar given distinct grey fill; hint text is now source-aware (Scantron vs QM)',
-          'Question Exceptions link shows a + circle icon',
-          'Exam title/date banner on analysis screen given grey fill, border removed',
-          'Exam Overview card border removed; thick separator added between it and the tabs section',
-          'Box border removed from tabs/sections area — content sits directly on the page',
-          'Accordion subsection left borders changed from rounded to straight',
-          'Footer separator doubled in thickness on both pages',
-          'Expand All control moved into the MCQ table header cell above per-row arrows — garnet triangle, rotates on state',
-          'Download CSV moved to right of toolbar as sole action button',
-          'Question Exceptions modal renamed from Question Exclusions throughout',
-          'Definition strip in Question Exceptions modal converted to equal-thirds grid',
-          'Question Exceptions row borders darkened to charcoal; reason input styled consistently with other form fields',
-          'Hamburger menu positioning fixed — no longer detaches to bottom of screen when page is scrolled',
-          'Fixed null reference errors when switching between QM and Scantron source',
-          'Fixed missing closing brace in setSource causing "Unexpected end of input" JS error',
-          'Removed duplicate Exam Overview card element',
+          'New — Alternate Key: each question in the Question Exceptions modal now has a + Alt. Key button; select one or more additional accepted answers (A–E) with a reason; students answering the original key or any alternate receive full credit; all stats recalculate accordingly',
+          'Alternate key questions display as “A (+D)” in all tables and exports; reason appears in Comments column',
+          'Upload icons updated — QM results shows a document graphic, Scantron shows a bubble-sheet graphic; icons swap automatically when source is toggled',
+          'Run bar hint text is now larger, darker, and shows an exclamation icon when files are still needed',
+          'Header and results page logos: grey background removed; icon resized and aligned to match the text block',
+          'Deleted and Credited badges in all tables now consistently spaced and no longer wrap to a second line',
+          '“Excluded from analysis” wording unified for both Credited and Deleted questions across all tables and exports',
+          'Exam Overview KPI separator softened to match page separator style',
+          'Fixed: EN and FR stream averages in the Exam Overview now always agree with the overall exam average when credited or deleted questions are present',
+          'Fixed: Cronbach’s alpha (Reliability) now correctly excludes deleted questions from its calculation',
         ]
       }
     ]
