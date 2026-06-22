@@ -404,8 +404,8 @@ th{position:relative;white-space:normal}
             <div style="font-size:12px;line-height:1.65;color:#6b7a86;border-top:1px solid #edf0f3;padding-top:6px"><em>Technically: hierarchical logistic regression (Swaminathan &amp; Rogers, 1990). Items flagged when chi-square difference is significant at p &lt; 0.01 (2 df). DIF ≠ bias — it flags items for human review.</em></div>
           </div>
           <div style="background:#fff8e6;padding:11px 14px;border-left:3px solid #e8a800">
-            <div style="font-size:11.5px;font-weight:700;color:#5a3a00;margin-bottom:4px">Current flagging thresholds</div>
-            <div style="font-size:11px;color:#5a3a00;line-height:1.8">Difficult: p &lt; 0.35 &amp; rpbis &gt; 0 &nbsp;·&nbsp; Poor discrimination: rpbis &lt; 0, p &lt; 0.80 &nbsp;·&nbsp; Poor disc./difficult: p &lt; 0.25 &amp; rpbis &lt; 0.15 &nbsp;·&nbsp; Too easy: p ≥ 0.96 &amp; rpbis ≥ 0 &nbsp;·&nbsp; DIF: p &lt; 0.01 (chi-square, 2 df)</div>
+            <div style="font-size:11.5px;font-weight:700;color:#5a3a00;margin-bottom:4px">Default flagging thresholds</div>
+            <div style="font-size:11px;color:#5a3a00;line-height:1.8">Difficult: p &lt; 0.35 &amp; rpbis &gt; 0 &nbsp;·&nbsp; Poor discrimination: rpbis &lt; 0, p &lt; 0.80 &nbsp;·&nbsp; Check Key: p &lt; 0.25 &amp; rpbis &lt; 0.15 &nbsp;·&nbsp; Too easy: p ≥ 0.96 &amp; rpbis ≥ 0 &nbsp;·&nbsp; DIF: p &lt; 0.01 (chi-square, 2 df) &nbsp;·&nbsp; EN/FR gap: amber ≥ 8%, red ≥ 15%<br><span style="opacity:.8">All thresholds are configurable in <strong>Settings</strong> (hamburger menu).</span></div>
           </div>
         </div>
       </div>
@@ -425,28 +425,31 @@ th{position:relative;white-space:normal}
           <div style="background:#f4faf4;padding:10px 14px;border-left:3px solid #2e7d32">
             <div style="font-size:11px;font-weight:700;color:#1b5e20;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">✓ Do this</div>
             <ul style="margin-left:14px;font-size:11px;line-height:2;color:#333">
-              <li>Export the <b>raw results file</b> from QM as-is (.xlsx)</li>
-              <li>Export the <b>answer key</b> separately</li>
+              <li><b>QM:</b> Export the raw results file from QuestionMark as-is (.xlsx)</li>
+              <li><b>QM:</b> Prepare the answer key file from the same export (see FAQ for steps)</li>
+              <li><b>Scantron:</b> Use the .txt file received from the scanning centre as-is — no preparation needed</li>
               <li>Keep all original rows — the tool handles headers automatically</li>
-              <li>Keep the Disclosure question (Q1) — excluded automatically</li>
-              <li>Keep unscored / bloc-note questions — excluded automatically</li>
+              <li><b>QM:</b> Keep the Disclosure question (Q1) — excluded automatically</li>
+              <li><b>QM:</b> Keep unscored / bloc-note questions — excluded automatically</li>
             </ul>
           </div>
           <div style="background:#fdf4f4;padding:10px 14px;border-left:3px solid #c0392b">
             <div style="font-size:11px;font-weight:700;color:#b71c1c;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">✗ Avoid this</div>
             <ul style="margin-left:14px;font-size:11px;line-height:2;color:#333">
-              <li>Don't modify, reorder, or delete any rows or columns</li>
-              <li>Don't rename sheets or column headers</li>
+              <li>Don't modify, reorder, or delete any rows or columns in either file</li>
+              <li><b>QM:</b> Don't rename sheets or column headers</li>
+              <li><b>QM:</b> Don't save as .xls — always use .xlsx</li>
+              <li><b>QM:</b> Don't combine results and key into a single sheet</li>
               <li>Don't manually credit or remove questions in the source file — use <b>Question Exceptions</b> in the app instead</li>
-              <li>Don't save as .xls — always use .xlsx</li>
-              <li>Don't combine results and key into a single sheet</li>
+              <li>Don't adjust scores or answers before uploading — let the app handle all calculations</li>
             </ul>
           </div>
         </div>
         <div style="background:#f8f5f0;border-radius:7px;padding:10px 14px;font-size:11px;line-height:1.85;color:#4a3a28">
-          <b>Stream codes:</b> Default E (English) / F (French). Change in Step 1 if your QM export uses different codes.<br>
-          <b>Answer key tab:</b> The tool auto-detects a sheet named <i>Answer Key</i>.<br>
-          <b>Tip:</b> If something looks wrong after uploading, click <i>details</i> under the confirmation for a full diagnostic.
+          <b>QM stream codes:</b> Default E (English) / F (French). Change in Step 1 if your export uses different codes.<br>
+          <b>Scantron course codes:</b> Enter the EN and FR course codes used in your exam in Step 1. Students with unrecognised codes can be assigned to a stream at run time.<br>
+          <b>Upload validation:</b> After uploading, a preview panel appears showing what was detected — check it before running the analysis. Click <i>See details</i> on any status indicator for a full diagnostic.<br>
+          <b>Question Exceptions:</b> Use the app to credit, delete, or add alternate keys — never modify the source file directly.
         </div>
       </div>
     </div>
@@ -570,7 +573,7 @@ th{position:relative;white-space:normal}
         </button>
       </div>
       <div style="padding:14px 16px">
-        <div id="ua-main" onclick="document.getElementById('fi-main').click()"
+        <div id="ua-main" onclick="document.getElementById(&quot;fi-main&quot;).click()"
           ondragover="event.preventDefault();this.style.borderColor='#a31515';this.style.background='#fdf8f8'" ondragleave="this.style.borderColor='#D1D5DB';this.style.background='#fff'" ondrop="this.style.borderColor='#D1D5DB';this.style.background='#fff';handleDrop(event,'fi-main',parseResults)"
           class="upload-zone"
           onmouseover="this.style.borderColor='#a31515';this.style.background='#fdf8f8'" onmouseout="this.style.borderColor='#D1D5DB';this.style.background='#fff'">
@@ -617,6 +620,9 @@ th{position:relative;white-space:normal}
     </div>
 
   </div><!-- /upload-grid -->
+
+  <!-- QM validation panel (interim banner + full preview) -->
+  <div id="qm-preview" style="display:none;margin-top:6px;margin-bottom:10px"></div>
 
   <!-- Run Analysis bar -->
   <div class="run-bar-inner" style="padding:14px 16px;background:#fff;border:1.5px solid #C8CACD;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-bottom:4px">
@@ -1092,10 +1098,10 @@ th{position:relative;white-space:normal}
 "use strict";
 
 // ── App version — single source of truth ─────────────────────────────────
-var APP_VERSION     = '1.8-dev';
-var APP_BUILD       = '20260622-01';
-var APP_FAQ_VERSION = '1.5';           // Update when FAQ content changes
-var APP_FAQ_DATE    = 'June 18, 2026'; // Update when FAQ content changes
+var APP_VERSION     = '1.8';
+var APP_BUILD       = '20260622-02';
+var APP_FAQ_VERSION = '1.8';           // Update when FAQ content changes
+var APP_FAQ_DATE    = 'June 22, 2026'; // Update when FAQ content changes
 var APP_RN_DATE     = 'June 22, 2026'; // Update each version close
 
 // ── Guide toggle ──────────────────────────────────────────────────────────
@@ -1532,9 +1538,11 @@ function clearDirty() {
 }
 function setSource(src) {
   G_SOURCE = src;
-  // Clear scantron preview whenever source changes
+  // Clear both previews whenever source changes
   var sp = document.getElementById('scantron-preview');
   if (sp) { sp.style.display = 'none'; sp.innerHTML = ''; }
+  var qp = document.getElementById('qm-preview');
+  if (qp) { qp.style.display = 'none'; qp.innerHTML = ''; }
   // Clear all upload feedback indicators when source changes
   ['feedback-main','feedback-key'].forEach(function(id) {
     var el = document.getElementById(id);
@@ -1820,7 +1828,16 @@ function parseResults(text, xlsxRows, isCsv) {
   // rows[2] = headers (Special 4/5/2/1 + Score/Outcome pairs)
   // rows[3]+ = student data
   var hRow     = rows[2];  // header row
-  var dataRows = rows.slice(3).filter(function(r){ return r.some(function(c){ return String(c).trim() !== ''; }); });
+  var QM_FOOTER_KEYWORDS = ['filter','status','total','average','sum','count','subtotal'];
+  var dataRows = rows.slice(3).filter(function(r) {
+    if (!r.some(function(c){ return String(c).trim() !== ''; })) return false; // skip empty rows
+    // Skip QM footer rows — identified by a known keyword in the first few columns
+    for (var ci = 0; ci < Math.min(r.length, 6); ci++) {
+      var cv = String(r[ci]||'').trim().toLowerCase();
+      if (cv && QM_FOOTER_KEYWORDS.indexOf(cv) >= 0) return false;
+    }
+    return true;
+  });
 
   // Also need the question label row — in new QM format it's effectively the
   // same row as hRow but question numbers come from the MERGED cells in row 0
@@ -1909,8 +1926,6 @@ function parseResults(text, xlsxRows, isCsv) {
     var q1Pass = 0, q1Total = 0;
     for (var ri = 3; ri < rows.length; ri++) {
       if (!rows[ri] || !rows[ri][0]) continue;
-      var sv = String(rows[ri][0]).trim().toUpperCase();
-      if (sv !== engCode && sv !== freCode) continue;
       q1Total++;
       if (parseInt(rows[ri][sc]) === 1) q1Pass++;
     }
@@ -1938,8 +1953,6 @@ function parseResults(text, xlsxRows, isCsv) {
     var allUnscored = true;
     var checked = 0;
     for (var ri2 = 3; ri2 < rows.length && checked < 5; ri2++) {
-      var sv2 = String(rows[ri2][0]||'').trim().toUpperCase();
-      if (sv2 !== engCode && sv2 !== freCode) continue;
       var outVal = String(rows[ri2][oc2]||'').trim().toLowerCase();
       if (outVal && outVal.indexOf('unscored') === -1) { allUnscored = false; break; }
       checked++;
@@ -1970,9 +1983,7 @@ function parseResults(text, xlsxRows, isCsv) {
 
   for (var ri = 0; ri < dataRows.length; ri++) {
     var r = dataRows[ri];
-    // Only accept rows where stream matches a known EN or FR code
     var streamVal = String(r[streamCol] || '').trim().toUpperCase();
-    if (streamVal !== engCode && streamVal !== freCode) continue;
 
     var s = {
       last:    lastCol  !== -1 ? String(r[lastCol] ||'').trim() : ('Student '+(G.students.length+1)),
@@ -2050,7 +2061,7 @@ function parseResults(text, xlsxRows, isCsv) {
   var q10scores = s0 ? G.qLabels.slice(0,10).map(function(_,i){
     return 'Q'+(i+1)+'='+(s0.qmScores&&s0.qmScores[i]!==undefined?s0.qmScores[i]:'?');
   }).join(' | ') : 'n/a';
-  var unmatchedCount = dataRows.length - G.students.length;
+  var unmatchedCount = G.students.filter(function(s){ return s.stream !== engCode && s.stream !== freCode; }).length;
   var dbg =
     'FILE FORMAT\n' +
     'Detected as: QuestionMark raw export (Excel/CSV).\n' +
@@ -2066,7 +2077,7 @@ function parseResults(text, xlsxRows, isCsv) {
       ? 'Stream breakdown: '+streamCodes.map(function(sc){return sc+': '+G.students.filter(function(s){return s.stream===sc;}).length+' students';}).join(', ')+'.\n'
       : '') +
     (unmatchedCount > 0
-      ? unmatchedCount+' row'+(unmatchedCount!==1?'s':'')+' had a stream code that did not match EN ("'+engCode+'") or FR ("'+freCode+'") — these students were not included in the analysis. Check the stream codes in Step 1 if this is unexpected.\n'
+      ? unmatchedCount+' row'+(unmatchedCount!==1?'s':'')+' had a stream code that did not match EN ("'+engCode+'") or FR ("'+freCode+'"). These students are included in overall stats but will not be assigned to a stream for DIF analysis. Check the stream codes in Step 1 if this is unexpected.\n'
       : 'All student rows matched a recognised stream code.\n') +
     '\n' +
     'ANSWER PREVIEW (first student, Q1–Q10)\n' +
@@ -2075,6 +2086,7 @@ function parseResults(text, xlsxRows, isCsv) {
   showFeedback('feedback-main', hasStream ? 'ok' : 'warn', visibleLines, dbg);
   document.getElementById('key-card').style.display = 'block';
   checkRunReady();
+  if (G_SOURCE !== 'scantron') updateQMPreview();
 }
 
 // ── Key parser ────────────────────────────────────────────────────────────
@@ -2249,10 +2261,8 @@ function parseKey(text, xlsxRows, isCsv) {
 
   showFeedback('feedback-key', type, keyVisibleLines, keyDbg);
   checkRunReady();
+  if (G_SOURCE !== 'scantron') updateQMPreview();
 }
-
-// ══════════════════════════════════════════════════════════════════════════
-// SCANTRON PARSER — Completely independent from QM code path
 // Input: raw .txt file content (tab-delimited, quoted fields)
 // Row 0 = MASTER key row (answers as 1–5, convert to A–E for display)
 // Rows 1+ = student responses
@@ -2451,7 +2461,225 @@ function makeTableResizable(tableId) {
 }
 
 
-// ── Export Session Record (CSV) ───────────────────────────────────────────
+// ── QM Upload validation panel ────────────────────────────────────────────
+function updateQMPreview() {
+  if (G_SOURCE === 'scantron') return;
+  var el = document.getElementById('qm-preview');
+  if (!el) return;
+
+  var hasResults = G.nQ > 0 && G.students && G.students.length > 0;
+  var hasKey     = G.key && G.key.length > 0;
+
+  if (!hasResults && !hasKey) {
+    el.style.display = 'none'; el.innerHTML = ''; return;
+  }
+
+  if (hasResults && hasKey) {
+    // Both uploaded — show full preview
+    renderQMPreview(el);
+    return;
+  }
+
+  // One file uploaded — show interim banner
+  var msg = hasResults
+    ? 'Upload your <strong>answer key file</strong> (Step 3) to view the full data validation.'
+    : 'Upload your <strong>results file</strong> (Step 2) to view the full data validation.';
+
+  el.innerHTML =
+    '<div style="display:flex;align-items:center;gap:10px;padding:9px 14px;background:#f4f6f9;border:0.5px solid #dde1e5;border-radius:8px;font-size:12px;color:#6b7a86">' +
+      '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#9aa3ab" stroke-width="1.4"/><rect x="7.2" y="5" width="1.6" height="4" rx=".8" fill="#9aa3ab"/><circle cx="8" cy="11" r=".9" fill="#9aa3ab"/></svg>' +
+      '<span>'+msg+'</span>' +
+    '</div>';
+  el.style.display = 'block';
+}
+
+function renderQMPreview(el) {
+  var enCode = ((document.getElementById('eng-code')||{value:'E'}).value||'E').trim().toUpperCase();
+  var frCode = ((document.getElementById('fre-code')||{value:'F'}).value||'F').trim().toUpperCase();
+
+  var nEN = 0, nFR = 0, nUnmatched = 0;
+  G.students.forEach(function(s) {
+    var st = (s.stream||'').toUpperCase();
+    if (st === enCode) nEN++;
+    else if (st === frCode) nFR++;
+    else nUnmatched++;
+  });
+
+  // Distinct unmatched stream codes
+  var unmatchedMap = {};
+  G.students.forEach(function(s) {
+    var st = (s.stream||'').toUpperCase();
+    if (st !== enCode && st !== frCode) {
+      var k = s.stream||'(blank)';
+      unmatchedMap[k] = (unmatchedMap[k]||0) + 1;
+    }
+  });
+  var unmatchedCodes = Object.keys(unmatchedMap).sort();
+
+  // Cross-file validation
+  var keyCount = G.key.length;
+  var qCount   = G.nQ;
+  var mismatch = keyCount !== qCount;
+
+  // Key pills — first 10
+  var keyPillsHtml = G.key.slice(0, 10).map(function(k, i) {
+    return '<div style="display:inline-flex;flex-direction:column;align-items:center;gap:1px;background:#f4f6f9;border:0.5px solid #dde1e5;border-radius:6px;padding:5px 9px;min-width:36px">' +
+      '<span style="font-size:10px;color:#6b7a86">Q'+(i+1)+'</span>' +
+      '<span style="font-size:13px;font-weight:600;color:#1a1f24">'+(k||'?').toUpperCase()+'</span></div>';
+  }).join('');
+  if (qCount > 10) {
+    keyPillsHtml += '<div style="display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#f4f6f9;border:0.5px solid #dde1e5;border-radius:6px;padding:5px 9px;min-width:36px;opacity:.5">' +
+      '<span style="font-size:10px;color:#6b7a86">···</span><span style="font-size:11px;color:#6b7a86">'+(qCount-10)+' more</span></div>';
+  }
+  var allKeyPillsHtml = G.key.map(function(k, i) {
+    return '<div style="display:inline-flex;flex-direction:column;align-items:center;gap:1px;background:#f4f6f9;border:0.5px solid #dde1e5;border-radius:6px;padding:5px 9px;min-width:36px">' +
+      '<span style="font-size:10px;color:#6b7a86">Q'+(i+1)+'</span>' +
+      '<span style="font-size:13px;font-weight:600;color:#1a1f24">'+(k||'?').toUpperCase()+'</span></div>';
+  }).join('');
+
+  // Student row builder
+  function buildStudentRow(s, idx, compact) {
+    var st = (s.stream||'').toUpperCase();
+    var isEN = st === enCode, isFR = st === frCode;
+    var isUnmatched = !isEN && !isFR;
+    var streamBadge = isEN
+      ? '<span style="display:inline-block;font-size:10px;font-weight:600;color:#0c447c;background:#e6f1fb;border-radius:4px;padding:1px 7px">EN</span>'
+      : isFR
+        ? '<span style="display:inline-block;font-size:10px;font-weight:600;color:#3b6d11;background:#eaf3de;border-radius:4px;padding:1px 7px">FR</span>'
+        : '<span style="display:inline-block;font-size:10px;font-weight:600;color:#856404;background:#fff3cd;border-radius:4px;padding:1px 7px">? unmatched</span>';
+    var rowBg = isUnmatched ? 'background:#fffbf0' : '';
+    var p = compact ? '5px 12px' : '7px 12px';
+    var first5 = s.outcomes ? s.outcomes.slice(0,5).map(function(a){ return a ? a.toUpperCase() : '—'; }).join(' ') : '—';
+    return '<tr style="'+rowBg+'">' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;color:#6b7a86;font-size:12px">'+(idx+1)+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-size:12px">'+(s.id||'—')+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-size:12px">'+(s.last&&s.first?s.last+', '+s.first:s.last||s.first||'—')+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-family:monospace;font-size:12px">'+(s.stream||'—')+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-size:12px">'+streamBadge+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-family:monospace;font-size:12px">'+first5+'</td></tr>';
+  }
+
+  var PREVIEW_N = 5;
+  var studentRowsHtml    = G.students.slice(0, PREVIEW_N).map(function(s,i){ return buildStudentRow(s,i,false); }).join('');
+  var allStudentRowsHtml = G.students.map(function(s,i){ return buildStudentRow(s,i,true); }).join('');
+
+  var thHtml = '<thead><tr style="background:#f9fafb">' +
+    ['Row','Student ID','Name','Stream code','Stream','Q1–Q5 answers'].map(function(h){
+      return '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">'+h+'</th>';
+    }).join('') + '</tr></thead>';
+
+  // Filenames
+  var fnMain = '', fnKey = '';
+  var inpMain = document.getElementById('fi-main'), inpKey = document.getElementById('fi-key');
+  if (inpMain && inpMain.files && inpMain.files[0]) fnMain = inpMain.files[0].name;
+  if (inpKey  && inpKey.files  && inpKey.files[0])  fnKey  = inpKey.files[0].name;
+
+  // Unmatched summary
+  var unmatchedSummary = '';
+  if (unmatchedCodes.length > 0) {
+    unmatchedSummary =
+      '<div style="padding:10px 14px;background:#fffbf0;border-top:0.5px solid #f0e0a0">' +
+        '<div style="font-size:11px;font-weight:600;color:#856404;margin-bottom:6px">⚠ '+nUnmatched+' student'+(nUnmatched!==1?'s':'')+' had unrecognised stream codes — breakdown below. These students will be prompted for stream assignment when you run the analysis.</div>' +
+        '<table style="width:auto;border-collapse:collapse;font-size:11px">' +
+          '<thead><tr>' +
+            '<th style="text-align:left;padding:4px 12px 4px 0;color:#6b7a86;font-weight:500;border-bottom:0.5px solid #e8d8a0">Code found in file</th>' +
+            '<th style="text-align:right;padding:4px 12px;color:#6b7a86;font-weight:500;border-bottom:0.5px solid #e8d8a0">Students</th>' +
+            '<th style="text-align:left;padding:4px 12px;color:#6b7a86;font-weight:500;border-bottom:0.5px solid #e8d8a0">Status</th>' +
+          '</tr></thead><tbody>' +
+          unmatchedCodes.map(function(code) {
+            return '<tr>' +
+              '<td style="padding:4px 12px 4px 0;font-family:monospace;color:#1a1f24">'+escHtml(code)+'</td>' +
+              '<td style="padding:4px 12px;text-align:right;color:#1a1f24">'+unmatchedMap[code]+'</td>' +
+              '<td style="padding:4px 12px"><span style="font-size:10px;font-weight:600;color:#856404;background:#fff3cd;border-radius:4px;padding:1px 7px">No match</span></td>' +
+            '</tr>';
+          }).join('') +
+        '</tbody></table>' +
+        '<div style="font-size:11px;color:#a07020;margin-top:6px">To fix globally: update the EN/FR stream code fields in Step 1 and click <strong>Re-validate</strong> below. For a permanent fix, correct the stream codes in the source file and re-upload.</div>' +
+      '</div>';
+  }
+
+  // Mismatch warning
+  var mismatchWarning = mismatch
+    ? '<div style="padding:9px 14px;background:#fff0f0;border-top:0.5px solid #f0c0c0;font-size:11px;color:#7a1010;font-weight:500">' +
+        '⚠ Question count mismatch: the results file has <strong>'+qCount+' questions</strong> but the answer key has <strong>'+keyCount+' answers</strong>. Verify that both files were exported from the same exam session.' +
+      '</div>'
+    : '';
+
+  el.innerHTML =
+    '<div style="border:0.5px solid #dde1e5;border-radius:10px;overflow:hidden;font-family:var(--font)">' +
+    // Header
+    '<div style="background:#f4f6f9;padding:10px 16px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:0.5px solid #dde1e5">' +
+      '<div>' +
+        '<div style="font-size:13px;font-weight:600;color:#1a1f24">Parse Preview</div>' +
+        (fnMain ? '<div style="font-size:11px;color:#6b7a86;margin-top:2px"><span style="font-weight:500">Results file:</span> '+escHtml(fnMain)+'</div>' : '') +
+        (fnKey  ? '<div style="font-size:11px;color:#6b7a86;margin-top:1px"><span style="font-weight:500">Key file:</span> '+escHtml(fnKey)+'</div>' : '') +
+      '</div>' +
+      '<button onclick="var qp=document.getElementById(\'qm-preview\');if(qp)qp.style.display=\'none\'" style="background:none;border:none;cursor:pointer;font-size:18px;color:#6b7a86;line-height:1;padding:0 4px;flex-shrink:0">✕</button>' +
+    '</div>' +
+    // Raw data notice
+    '<div style="padding:7px 16px;background:#f0f4ff;border-bottom:0.5px solid #dde1e5;font-size:11px;color:#3d5470">ℹ This preview reflects the raw files only — Question Exceptions and alternate keys have not been applied yet.</div>' +
+    // Mismatch warning (if any)
+    mismatchWarning +
+    // KPI row
+    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:0.5px solid #dde1e5">' +
+      _previewKPI('Students', G.students.length, 'rows detected') +
+      _previewKPI('Questions', qCount, 'in results file') +
+      _previewKPI('EN stream', nEN, enCode||'—', '#185fa5') +
+      _previewKPI('FR stream', nFR, frCode||'—', '#3b6d11') +
+    '</div>' +
+    // Key section
+    '<div style="border-bottom:0.5px solid #dde1e5">' +
+      '<div style="background:#f9fafb;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid #edf0f3">' +
+        '<div style="font-size:11px;font-weight:600;color:#3d4a54">Answer key (Q1–Q'+Math.min(qCount,10)+' of '+qCount+')'+(mismatch?'  <span style="color:#c0392b;font-weight:400;font-size:10px">⚠ count mismatch</span>':'')+'</div>' +
+        (qCount > 10 ? '<button id="qm-key-toggle" onclick="qmToggle(&quot;key&quot;)" style="font-size:11px;color:#185fa5;background:none;border:none;cursor:pointer;text-decoration:underline">Show all '+qCount+'</button>' : '') +
+      '</div>' +
+      '<div style="padding:12px 14px;display:flex;flex-wrap:wrap;gap:6px" id="qm-key-preview">'+keyPillsHtml+'</div>' +
+      '<div style="padding:12px 14px;display:flex;flex-wrap:wrap;gap:6px;display:none" id="qm-key-all">'+allKeyPillsHtml+'</div>' +
+    '</div>' +
+    // Student rows
+    '<div>' +
+      '<div style="background:#f9fafb;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid #edf0f3">' +
+        '<div style="font-size:11px;font-weight:600;color:#3d4a54">Student rows — first '+Math.min(PREVIEW_N,G.students.length)+' of '+G.students.length+' &nbsp;<span style="font-weight:400;font-style:italic;color:#6b7a86">Sample only — all '+G.students.length+' students are loaded and ready</span></div>' +
+        (G.students.length > PREVIEW_N ? '<button id="qm-students-toggle" onclick="qmToggle(&quot;students&quot;)" style="font-size:11px;color:#185fa5;background:none;border:none;cursor:pointer;text-decoration:underline;white-space:nowrap">Show all '+G.students.length+'</button>' : '') +
+      '</div>' +
+      '<div style="overflow-x:auto">' +
+        '<table id="qm-students-preview" style="width:100%;border-collapse:collapse">'+thHtml+'<tbody>'+studentRowsHtml+'</tbody></table>' +
+        '<table id="qm-students-all" style="width:100%;border-collapse:collapse;display:none">'+thHtml+'<tbody>'+allStudentRowsHtml+'</tbody></table>' +
+      '</div>' +
+      unmatchedSummary +
+    '</div>' +
+    // Action row
+    '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#f9fafb;border-top:0.5px solid #dde1e5">' +
+      '<span style="font-size:11px;color:#6b7a86">Preview only — all '+G.students.length+' students and '+qCount+' questions are loaded.</span>' +
+      '<div style="display:flex;gap:8px">' +
+        '<button onclick="updateQMPreview()" style="font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:0.5px solid #C4C9D4;background:#fff;color:#3d4a54;cursor:pointer">Re-validate</button>' +
+        '<button onclick="document.getElementById(&quot;fi-main&quot;).click()" style="font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:0.5px solid #C4C9D4;background:#fff;color:#3d4a54;cursor:pointer">Re-upload results</button>' +
+        '<button onclick="document.getElementById(&quot;fi-key&quot;).click()" style="font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:0.5px solid #C4C9D4;background:#fff;color:#3d4a54;cursor:pointer">Re-upload key</button>' +
+        '<button onclick="var qp=document.getElementById(\'qm-preview\');if(qp)qp.style.display=\'none\'" style="font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:none;background:#2e7d32;color:#fff;cursor:pointer">✓ Looks good</button>' +
+      '</div>' +
+    '</div>' +
+    '</div>';
+
+  el.style.display = 'block';
+}
+
+function qmToggle(section) {
+  if (section === 'key') {
+    var p = document.getElementById('qm-key-preview'), a = document.getElementById('qm-key-all'), b = document.getElementById('qm-key-toggle');
+    var showing = a && a.style.display !== 'none';
+    if (p) p.style.display = showing ? 'flex' : 'none';
+    if (a) a.style.display = showing ? 'none' : 'flex';
+    if (b) b.textContent = showing ? 'Show all '+G.nQ : 'Show fewer';
+  } else {
+    var p2 = document.getElementById('qm-students-preview'), a2 = document.getElementById('qm-students-all'), b2 = document.getElementById('qm-students-toggle');
+    var showing2 = a2 && a2.style.display !== 'none';
+    if (p2) p2.style.display = showing2 ? 'table' : 'none';
+    if (a2) a2.style.display = showing2 ? 'none' : 'table';
+    if (b2) b2.textContent = showing2 ? 'Show all '+G.students.length : 'Show fewer';
+  }
+}
+
+
 function exportSessionRecord() {
   closeHamburger();
   if (!G._lastN) { alert('No analysis to export — please run the analysis first.'); return; }
@@ -2514,101 +2742,125 @@ function renderScantronPreview(students, keyLetters, nQ, badRows) {
   var el = document.getElementById('scantron-preview');
   if (!el) return;
 
+  // Store data for re-validate
+  el._scStudents   = students;
+  el._scKeyLetters = keyLetters;
+  el._scNQ         = nQ;
+  el._scBadRows    = badRows;
+
   var enCode = ((document.getElementById('scantron-en-code')||{value:''}).value||'').trim().toUpperCase();
   var frCode = ((document.getElementById('scantron-fr-code')||{value:''}).value||'').trim().toUpperCase();
 
-  // Count streams
-  var nEN = 0, nFR = 0;
+  var nEN = 0, nFR = 0, nUnmatched = 0;
   students.forEach(function(s) {
     var cc = (s.courseCode||'').toUpperCase();
     if (cc === enCode) nEN++;
     else if (cc === frCode) nFR++;
+    else nUnmatched++;
   });
 
-  // Key pills — first 10, with show-all toggle
+  // Distinct unmatched codes with counts
+  var unmatchedMap = {};
+  students.forEach(function(s) {
+    var cc = (s.courseCode||'').toUpperCase();
+    if (cc !== enCode && cc !== frCode) {
+      unmatchedMap[s.courseCode||'(blank)'] = (unmatchedMap[s.courseCode||'(blank)'] || 0) + 1;
+    }
+  });
+  var unmatchedCodes = Object.keys(unmatchedMap).sort();
+
+  // Key pills
   var keyPillsHtml = keyLetters.slice(0, 10).map(function(k, i) {
     return '<div style="display:inline-flex;flex-direction:column;align-items:center;gap:1px;background:#f4f6f9;border:0.5px solid #dde1e5;border-radius:6px;padding:5px 9px;min-width:36px">' +
       '<span style="font-size:10px;color:#6b7a86">Q'+(i+1)+'</span>' +
-      '<span style="font-size:13px;font-weight:600;color:#1a1f24">'+(k||'?')+'</span>' +
-      '</div>';
+      '<span style="font-size:13px;font-weight:600;color:#1a1f24">'+(k||'?')+'</span></div>';
   }).join('');
   if (nQ > 10) {
     keyPillsHtml += '<div style="display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#f4f6f9;border:0.5px solid #dde1e5;border-radius:6px;padding:5px 9px;min-width:36px;opacity:.5">' +
-      '<span style="font-size:10px;color:#6b7a86">···</span>' +
-      '<span style="font-size:11px;color:#6b7a86">'+(nQ-10)+' more</span>' +
-      '</div>';
+      '<span style="font-size:10px;color:#6b7a86">···</span><span style="font-size:11px;color:#6b7a86">'+(nQ-10)+' more</span></div>';
   }
-
   var allKeyPillsHtml = keyLetters.map(function(k, i) {
     return '<div style="display:inline-flex;flex-direction:column;align-items:center;gap:1px;background:#f4f6f9;border:0.5px solid #dde1e5;border-radius:6px;padding:5px 9px;min-width:36px">' +
       '<span style="font-size:10px;color:#6b7a86">Q'+(i+1)+'</span>' +
-      '<span style="font-size:13px;font-weight:600;color:#1a1f24">'+(k||'?')+'</span>' +
-      '</div>';
+      '<span style="font-size:13px;font-weight:600;color:#1a1f24">'+(k||'?')+'</span></div>';
   }).join('');
 
-  // Student rows — first 5
+  // Student row builder
+  function buildStudentRow(s, idx, compact) {
+    var cc = (s.courseCode||'').toUpperCase();
+    var isEN = cc === enCode, isFR = cc === frCode;
+    var isUnmatched = !isEN && !isFR;
+    var streamBadge = isEN
+      ? '<span style="display:inline-block;font-size:10px;font-weight:600;color:#0c447c;background:#e6f1fb;border-radius:4px;padding:1px 7px">EN</span>'
+      : isFR
+        ? '<span style="display:inline-block;font-size:10px;font-weight:600;color:#3b6d11;background:#eaf3de;border-radius:4px;padding:1px 7px">FR</span>'
+        : '<span style="display:inline-block;font-size:10px;font-weight:600;color:#856404;background:#fff3cd;border-radius:4px;padding:1px 7px">? unmatched</span>';
+    var rowBg = isUnmatched ? 'background:#fffbf0' : '';
+    var p = compact ? '5px 12px' : '7px 12px';
+    var first5 = s.outcomes ? s.outcomes.slice(0,5).map(function(a){ return a ? a.toUpperCase() : '—'; }).join(' ') : '—';
+    return '<tr style="'+rowBg+'">' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;color:#6b7a86;font-size:12px">'+(idx+2)+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-size:12px">'+(s.id||'—')+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-size:12px">'+(s.name||'—')+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-family:monospace;font-size:12px">'+(s.courseCode||'—')+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-size:12px">'+streamBadge+'</td>' +
+      '<td style="padding:'+p+';border-bottom:0.5px solid #edf0f3;font-family:monospace;font-size:12px">'+first5+'</td></tr>';
+  }
+
   var PREVIEW_N = 5;
-  var studentRowsHtml = students.slice(0, PREVIEW_N).map(function(s, idx) {
-    var cc = (s.courseCode||'').toUpperCase();
-    var isEN = cc === enCode, isFR = cc === frCode;
-    var isUnmatched = !isEN && !isFR && (enCode || frCode);
-    var streamBadge = isEN
-      ? '<span style="display:inline-block;font-size:10px;font-weight:600;color:#0c447c;background:#e6f1fb;border-radius:4px;padding:1px 7px">EN</span>'
-      : isFR
-        ? '<span style="display:inline-block;font-size:10px;font-weight:600;color:#3b6d11;background:#eaf3de;border-radius:4px;padding:1px 7px">FR</span>'
-        : '<span style="display:inline-block;font-size:10px;font-weight:600;color:#856404;background:#fff3cd;border-radius:4px;padding:1px 7px">? unmatched</span>';
-    var rowBg = isUnmatched ? 'background:#fffbf0' : '';
-    var first5 = s.outcomes ? s.outcomes.slice(0,5).map(function(a){ return a ? a.toUpperCase() : '—'; }).join(' ') : '—';
-    return '<tr style="'+rowBg+'">' +
-      '<td style="padding:7px 12px;border-bottom:0.5px solid #edf0f3;color:#6b7a86;font-size:12px">'+(idx+2)+'</td>' +
-      '<td style="padding:7px 12px;border-bottom:0.5px solid #edf0f3;font-size:12px">'+(s.id||'—')+'</td>' +
-      '<td style="padding:7px 12px;border-bottom:0.5px solid #edf0f3;font-size:12px">'+(s.name||'—')+'</td>' +
-      '<td style="padding:7px 12px;border-bottom:0.5px solid #edf0f3;font-family:monospace;font-size:12px">'+(s.courseCode||'—')+'</td>' +
-      '<td style="padding:7px 12px;border-bottom:0.5px solid #edf0f3;font-size:12px">'+streamBadge+'</td>' +
-      '<td style="padding:7px 12px;border-bottom:0.5px solid #edf0f3;font-family:monospace;font-size:12px">'+first5+'</td>' +
-      '</tr>';
-  }).join('');
+  var studentRowsHtml    = students.slice(0, PREVIEW_N).map(function(s,i){ return buildStudentRow(s,i,false); }).join('');
+  var allStudentRowsHtml = students.map(function(s,i){ return buildStudentRow(s,i,true); }).join('');
 
-  var allStudentRowsHtml = students.map(function(s, idx) {
-    var cc = (s.courseCode||'').toUpperCase();
-    var isEN = cc === enCode, isFR = cc === frCode;
-    var isUnmatched = !isEN && !isFR && (enCode || frCode);
-    var streamBadge = isEN
-      ? '<span style="display:inline-block;font-size:10px;font-weight:600;color:#0c447c;background:#e6f1fb;border-radius:4px;padding:1px 7px">EN</span>'
-      : isFR
-        ? '<span style="display:inline-block;font-size:10px;font-weight:600;color:#3b6d11;background:#eaf3de;border-radius:4px;padding:1px 7px">FR</span>'
-        : '<span style="display:inline-block;font-size:10px;font-weight:600;color:#856404;background:#fff3cd;border-radius:4px;padding:1px 7px">? unmatched</span>';
-    var rowBg = isUnmatched ? 'background:#fffbf0' : '';
-    var first5 = s.outcomes ? s.outcomes.slice(0,5).map(function(a){ return a ? a.toUpperCase() : '—'; }).join(' ') : '—';
-    return '<tr style="'+rowBg+'">' +
-      '<td style="padding:5px 12px;border-bottom:0.5px solid #edf0f3;color:#6b7a86;font-size:12px">'+(idx+2)+'</td>' +
-      '<td style="padding:5px 12px;border-bottom:0.5px solid #edf0f3;font-size:12px">'+(s.id||'—')+'</td>' +
-      '<td style="padding:5px 12px;border-bottom:0.5px solid #edf0f3;font-size:12px">'+(s.name||'—')+'</td>' +
-      '<td style="padding:5px 12px;border-bottom:0.5px solid #edf0f3;font-family:monospace;font-size:12px">'+(s.courseCode||'—')+'</td>' +
-      '<td style="padding:5px 12px;border-bottom:0.5px solid #edf0f3;font-size:12px">'+streamBadge+'</td>' +
-      '<td style="padding:5px 12px;border-bottom:0.5px solid #edf0f3;font-family:monospace;font-size:12px">'+first5+'</td>' +
-      '</tr>';
-  }).join('');
-
-  var unmatchedWarning = badRows.length > 0
-    ? '<div style="padding:8px 14px;background:#fffbf0;border-top:0.5px solid #f0e0a0;font-size:11px;color:#856404">' +
-        '⚠ '+badRows.length+' unmatched course code'+(badRows.length>1?'s':'')+' detected. You can assign '+(badRows.length>1?'them':'it')+' to a stream when you run the analysis.' +
-      '</div>'
-    : '';
+  // Unmatched codes summary table
+  var unmatchedSummary = '';
+  if (unmatchedCodes.length > 0) {
+    unmatchedSummary =
+      '<div style="padding:10px 14px;background:#fffbf0;border-top:0.5px solid #f0e0a0">' +
+        '<div style="font-size:11px;font-weight:600;color:#856404;margin-bottom:6px">' +
+          '⚠ '+nUnmatched+' student'+(nUnmatched!==1?'s':'')+' had unrecognised course codes — breakdown below.' +
+          ' These students will be prompted for stream assignment when you run the analysis.' +
+        '</div>' +
+        '<table style="width:auto;border-collapse:collapse;font-size:11px">' +
+          '<thead><tr>' +
+            '<th style="text-align:left;padding:4px 12px 4px 0;color:#6b7a86;font-weight:500;border-bottom:0.5px solid #e8d8a0">Code found in file</th>' +
+            '<th style="text-align:right;padding:4px 12px;color:#6b7a86;font-weight:500;border-bottom:0.5px solid #e8d8a0">Students</th>' +
+            '<th style="text-align:left;padding:4px 12px;color:#6b7a86;font-weight:500;border-bottom:0.5px solid #e8d8a0">Status</th>' +
+          '</tr></thead><tbody>' +
+          unmatchedCodes.map(function(code) {
+            return '<tr>' +
+              '<td style="padding:4px 12px 4px 0;font-family:monospace;color:#1a1f24">'+escHtml(code)+'</td>' +
+              '<td style="padding:4px 12px;text-align:right;color:#1a1f24">'+unmatchedMap[code]+'</td>' +
+              '<td style="padding:4px 12px"><span style="font-size:10px;font-weight:600;color:#856404;background:#fff3cd;border-radius:4px;padding:1px 7px">No match</span></td>' +
+            '</tr>';
+          }).join('') +
+        '</tbody></table>' +
+        '<div style="font-size:11px;color:#a07020;margin-top:6px">To fix globally: update the EN/FR course code fields in Step 1 and click <strong>Re-validate</strong> below. For a permanent fix, correct the course codes in the source Scantron file and re-upload.</div>' +
+      '</div>';
+  }
 
   var filename = '';
   var inp = document.getElementById('fi-main');
   if (inp && inp.files && inp.files[0]) filename = inp.files[0].name;
 
+  var thHtml = '<thead><tr style="background:#f9fafb">' +
+    ['Row','Student ID','Name','Course code','Stream','Q1–Q5 answers'].map(function(h){
+      return '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">'+h+'</th>';
+    }).join('') + '</tr></thead>';
+
   var html =
     '<div style="border:0.5px solid #dde1e5;border-radius:10px;overflow:hidden;font-family:var(--font)">' +
     // Header
     '<div style="background:#f4f6f9;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid #dde1e5">' +
-      '<div style="font-size:13px;font-weight:600;color:#1a1f24">'+
-        (filename ? escHtml(filename)+' — ' : '') + 'Parse preview' +
+      '<div>' +
+        '<div style="font-size:13px;font-weight:600;color:#1a1f24">Parse Preview</div>' +
+        (filename ? '<div style="font-size:11px;color:#6b7a86;margin-top:2px"><span style="font-weight:500">Uploaded file:</span> '+escHtml(filename)+'</div>' : '') +
       '</div>' +
-      '<button onclick="document.getElementById(\'scantron-preview\').style.display=\'none\'" ' +
+      '<button onclick="var sp=document.getElementById(\'scantron-preview\');if(sp)sp.style.display=\'none\'" ' +
         'style="background:none;border:none;cursor:pointer;font-size:18px;color:#6b7a86;line-height:1;padding:0 4px">✕</button>' +
+    '</div>' +
+    // Raw data notice
+    '<div style="padding:7px 16px;background:#f0f4ff;border-bottom:0.5px solid #dde1e5;font-size:11px;color:#3d5470">' +
+      'ℹ This preview reflects the raw file only — Question Exceptions and alternate keys have not been applied yet.' +
     '</div>' +
     // KPI row
     '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:0.5px solid #dde1e5">' +
@@ -2621,7 +2873,7 @@ function renderScantronPreview(students, keyLetters, nQ, badRows) {
     '<div style="border-bottom:0.5px solid #dde1e5">' +
       '<div style="background:#f9fafb;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid #edf0f3">' +
         '<div style="font-size:11px;font-weight:600;color:#3d4a54">Answer key — MASTER row (Q1–Q'+Math.min(nQ,10)+' of '+nQ+')</div>' +
-        (nQ > 10 ? '<button id="sc-key-toggle" onclick="scToggle(\'key\')" style="font-size:11px;color:#185fa5;background:none;border:none;cursor:pointer;text-decoration:underline">Show all '+nQ+'</button>' : '') +
+        (nQ > 10 ? '<button id="sc-key-toggle" onclick="scToggle(&quot;key&quot;)" style="font-size:11px;color:#185fa5;background:none;border:none;cursor:pointer;text-decoration:underline">Show all '+nQ+'</button>' : '') +
       '</div>' +
       '<div style="padding:12px 14px;display:flex;flex-wrap:wrap;gap:6px" id="sc-key-preview">'+keyPillsHtml+'</div>' +
       '<div style="padding:12px 14px;display:flex;flex-wrap:wrap;gap:6px;display:none" id="sc-key-all">'+allKeyPillsHtml+'</div>' +
@@ -2630,41 +2882,23 @@ function renderScantronPreview(students, keyLetters, nQ, badRows) {
     '<div>' +
       '<div style="background:#f9fafb;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid #edf0f3">' +
         '<div style="font-size:11px;font-weight:600;color:#3d4a54">Student rows — first '+Math.min(PREVIEW_N, students.length)+' of '+students.length+' &nbsp;<span style="font-weight:400;font-style:italic;color:#6b7a86">Sample only — all '+students.length+' students are loaded and ready</span></div>' +
-        (students.length > PREVIEW_N ? '<button id="sc-students-toggle" onclick="scToggle(\'students\')" style="font-size:11px;color:#185fa5;background:none;border:none;cursor:pointer;text-decoration:underline;white-space:nowrap">Show all '+students.length+'</button>' : '') +
+        (students.length > PREVIEW_N ? '<button id="sc-students-toggle" onclick="scToggle(&quot;students&quot;)" style="font-size:11px;color:#185fa5;background:none;border:none;cursor:pointer;text-decoration:underline;white-space:nowrap">Show all '+students.length+'</button>' : '') +
       '</div>' +
       '<div style="overflow-x:auto">' +
-        '<table id="sc-students-preview" style="width:100%;border-collapse:collapse">' +
-          '<thead><tr style="background:#f9fafb">' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Row</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Student ID</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Name</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Course code</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Stream</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Q1–Q5 answers</th>' +
-          '</tr></thead>' +
-          '<tbody>'+studentRowsHtml+'</tbody>' +
-        '</table>' +
-        '<table id="sc-students-all" style="width:100%;border-collapse:collapse;display:none">' +
-          '<thead><tr style="background:#f9fafb">' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Row</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Student ID</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Name</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Course code</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Stream</th>' +
-            '<th style="padding:7px 12px;text-align:left;font-size:11px;font-weight:500;color:#6b7a86;border-bottom:0.5px solid #dde1e5">Q1–Q5 answers</th>' +
-          '</tr></thead>' +
-          '<tbody>'+allStudentRowsHtml+'</tbody>' +
-        '</table>' +
+        '<table id="sc-students-preview" style="width:100%;border-collapse:collapse">'+thHtml+'<tbody>'+studentRowsHtml+'</tbody></table>' +
+        '<table id="sc-students-all" style="width:100%;border-collapse:collapse;display:none">'+thHtml+'<tbody>'+allStudentRowsHtml+'</tbody></table>' +
       '</div>' +
-      unmatchedWarning +
+      unmatchedSummary +
     '</div>' +
     // Action row
     '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#f9fafb;border-top:0.5px solid #dde1e5">' +
       '<span style="font-size:11px;color:#6b7a86">Preview only — all '+students.length+' students and '+nQ+' questions are loaded.</span>' +
       '<div style="display:flex;gap:8px">' +
-        '<button onclick="document.getElementById(\'fi-main\').click()" ' +
+        '<button onclick="revalidateScantron()" ' +
+          'style="font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:0.5px solid #C4C9D4;background:#fff;color:#3d4a54;cursor:pointer">Re-validate</button>' +
+        '<button onclick="document.getElementById(&quot;fi-main&quot;).click()" ' +
           'style="font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:0.5px solid #C4C9D4;background:#fff;color:#3d4a54;cursor:pointer">Re-upload</button>' +
-        '<button onclick="document.getElementById(\'scantron-preview\').style.display=\'none\'" ' +
+        '<button onclick="var sp=document.getElementById(\'scantron-preview\');if(sp)sp.style.display=\'none\'" ' +
           'style="font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;border:none;background:#2e7d32;color:#fff;cursor:pointer">✓ Looks good</button>' +
       '</div>' +
     '</div>' +
@@ -2673,6 +2907,13 @@ function renderScantronPreview(students, keyLetters, nQ, badRows) {
   el.innerHTML = html;
   el.style.display = 'block';
 }
+
+function revalidateScantron() {
+  var el = document.getElementById('scantron-preview');
+  if (!el || !el._scStudents) return;
+  renderScantronPreview(el._scStudents, el._scKeyLetters, el._scNQ, el._scBadRows);
+}
+
 
 function _previewKPI(label, val, sub, valColor) {
   return '<div style="padding:12px 16px;border-right:0.5px solid #dde1e5">' +
@@ -4740,6 +4981,7 @@ function resetAll() {
   var dbgs=['dbg-main','dbg-key','feedback-main','feedback-key'], i;
   for(i=0;i<dbgs.length;i++){var el=document.getElementById(dbgs[i]);if(el){el.style.display='none';el.innerHTML='';el.textContent='';}}
   var sp=document.getElementById('scantron-preview'); if(sp){sp.style.display='none';sp.innerHTML='';}
+  var qp=document.getElementById('qm-preview'); if(qp){qp.style.display='none';qp.innerHTML='';}
 }
 
 // ── DIF toggle ────────────────────────────────────────────────────────────
@@ -4975,12 +5217,23 @@ document.addEventListener('click', function(e) {
 // ── Release Notes ─────────────────────────────────────────────────────────
 var RELEASE_NOTES = [
   {
-    version: '1.8-dev',
+    version: '1.8',
     builds: [
       {
-        build: '20260622-01',
+        build: '20260622-02',
         date:  'June 22, 2026',
-        notes: []
+        notes: [
+          'QM upload validation panel — after both QM files are uploaded successfully, a full parse preview appears showing filenames, student and question counts, EN/FR stream breakdown, answer key pills (Q1–10 with Show all), student sample rows with stream badges, cross-file question count mismatch warning, and unmatched stream code summary',
+          'Interim banner shown when only one QM file is uploaded, indicating which file is still needed',
+          'Re-validate button in QM preview — refreshes stream counts using current Step 1 codes without re-uploading',
+          'QM parser now accepts all student rows regardless of stream code — stream assignment happens at analysis time using Step 1 codes, consistent with how Scantron works',
+          'QM footer rows (FILTER, STATUS, TOTAL, AVERAGE, etc.) are now excluded from student data automatically',
+          'Fixed: QM validation preview was using wrong field IDs for stream codes, causing it to always display E/F regardless of what was entered in Step 1',
+          'FAQ fully updated — entries now cover both QM and Scantron workflows, new sections for Data & Exports (Session Record, Scantron validation panel, configurable thresholds), upload troubleshooting updated for both sources',
+          'FAQ version stamp updated to v1.8',
+          'Setup accordion (How This Works) — thresholds strip now notes they are configurable in Settings and includes EN/FR gap thresholds',
+          'Setup accordion (File Prep Guide) — updated to cover both QM and Scantron workflows throughout',
+        ]
       }
     ]
   },
@@ -5658,27 +5911,40 @@ document.getElementById('fi-key').addEventListener('change',  function(){ if(G._
               <span class="faq-icon">+</span>
             </div>
             <div class="faq-a">
-              You need two files, both exported from QuestionMark: <strong>(1) the results file</strong> — the raw export of student responses for the exam, and <strong>(2) the answer key file</strong> — a separate file listing the correct answer for each question. Both must be in <strong>.xlsx format</strong>. Do not modify either file before uploading.
+              It depends on your data source:<br><br>
+              <strong>QuestionMark (QM):</strong> You need two files — <strong>(1) the results file</strong> (.xlsx), exported directly from QuestionMark, and <strong>(2) the answer key file</strong> (.xlsx), prepared from the same export (see <em>How do I prepare the answer key file?</em> below). Do not modify either file before uploading.<br><br>
+              <strong>Scantron:</strong> You need a single <strong>.txt</strong> file received from the scanning centre. No preparation is required — the answer key is embedded in the MASTER row of the file and will be read automatically. Switch the Data Source toggle in Step 1 to Scantron before uploading.
             </div>
           </div>
 
           <div class="faq-item">
             <div class="faq-q" onclick="toggleFAQ(this)">
-              <span>Where do I export the results file from QuestionMark?</span>
+              <span>Where do my results files come from?</span>
               <span class="faq-icon">+</span>
             </div>
             <div class="faq-a">
-              <span style="color:#b85c00;font-weight:600">[TODO — add QM export steps here]</span> Navigate to the exam in QuestionMark, go to Reports, and export the raw participant results as an Excel (.xlsx) file. Make sure to export the full unfiltered dataset.
+              <strong>QuestionMark:</strong> Export your results report directly from QuestionMark as you normally would — no changes to the file are needed before uploading.<br><br>
+              <strong>Scantron:</strong> Your results file is the <strong>.txt</strong> file received from the scanning centre after the exam is processed. No preparation is required — upload it as-is. The answer key is embedded in the file automatically.
             </div>
           </div>
 
           <div class="faq-item">
             <div class="faq-q" onclick="toggleFAQ(this)">
-              <span>Where do I find the answer key file?</span>
+              <span>How do I prepare the answer key file?</span>
               <span class="faq-icon">+</span>
             </div>
             <div class="faq-a">
-              <span style="color:#b85c00;font-weight:600">[TODO — add QM answer key export steps here]</span> The answer key is a separate export from QuestionMark. It must contain a sheet named <em>Answer Key</em> — the tool will detect it automatically.
+              <strong>Scantron:</strong> No preparation needed. The answer key is embedded in the MASTER row of the file received from the scanning centre and is read automatically on upload.<br><br>
+              <strong>QuestionMark:</strong> The answer key comes from the same QuestionMark export as your results file. To prepare it:
+              <ol style="margin:8px 0 0 16px;padding:0;line-height:2">
+                <li>In the exported workbook, find the row for the <strong>correct answers</strong> entry — the one where all responses reflect the answer key rather than a real student's answers</li>
+                <li>Copy that row to a new sheet within the same workbook (for your records), then copy or move that sheet to a <strong>separate new Excel workbook</strong> for upload
+                  <ul style="margin:4px 0 0 16px;padding:0">
+                    <li>Ensure the <strong>column headers</strong> from the original file are included — the tool uses these to identify the answer columns</li>
+                  </ul>
+                </li>
+                <li>Save and upload that file as your answer key in Step 3</li>
+              </ol>
             </div>
           </div>
 
@@ -5688,7 +5954,9 @@ document.getElementById('fi-key').addEventListener('change',  function(){ if(G._
               <span class="faq-icon">+</span>
             </div>
             <div class="faq-a">
-              The tool handles bilingual exams automatically. It uses the stream codes in the results file to separate English and French students. By default it expects <strong>E</strong> for English and <strong>F</strong> for French. If your QM export uses different codes, update them in the <strong>Language Codes</strong> field in Step 1 before running the analysis. The DIF analysis compares performance between the two streams.
+              The tool handles bilingual exams automatically for both QuestionMark and Scantron. It uses stream codes to separate English and French students and compares their performance in the DIF analysis.<br><br>
+              <strong>QuestionMark:</strong> By default the tool expects <strong>E</strong> for English and <strong>F</strong> for French in the results file stream column. If your export uses different codes, update them in the <strong>Language Codes</strong> field in Step 1 before running the analysis.<br><br>
+              <strong>Scantron:</strong> Students are identified by the course code they entered on their scan sheet. Enter the EN and FR course codes in Step 1 so the tool can match each student to the correct stream. Because students enter these manually, some variation in codes is common — unmatched codes can be assigned to a stream at run time via the correction modal.
             </div>
           </div>
 
@@ -5708,7 +5976,10 @@ document.getElementById('fi-key').addEventListener('change',  function(){ if(G._
               <span class="faq-icon">+</span>
             </div>
             <div class="faq-a">
-              When DIF is enabled and unrecognised course codes are detected, the upload area will show a yellow warning banner. When you click <strong>Run Analysis</strong>, a correction modal will appear listing every affected student. Use the dropdown next to each student to assign them to the correct language stream, then click <strong>Save &amp; Run Analysis</strong>. These corrections apply to the current session only and do not modify your source file. If you want a permanent fix, correct the course codes in the source file and re-upload.
+              When unrecognised course codes are detected, the upload validation panel will show a warning listing each distinct unmatched code and how many students used it. There are two ways to fix this:<br><br>
+              <strong>Quick fix (this session):</strong> When you click <strong>Run Analysis</strong>, a correction modal will appear listing each affected student. Assign them to the correct stream using the dropdown, then click <strong>Save &amp; Run Analysis</strong>. This applies to the current session only.<br><br>
+              <strong>Global fix:</strong> If the mismatch is due to a typo in the EN or FR course code fields in Step 1, correct them there and click <strong>Re-validate</strong> in the preview panel to refresh the stream counts immediately — no re-upload needed.<br><br>
+              <strong>Permanent fix:</strong> Correct the course codes in the source Scantron file and re-upload.
             </div>
           </div>
 
@@ -5765,6 +6036,49 @@ document.getElementById('fi-key').addEventListener('change',  function(){ if(G._
         </div>
       </div>
 
+      <!-- Data & Exports -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#a31515;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #a31515">Data &amp; Exports</div>
+        <div style="display:flex;flex-direction:column;gap:1px">
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)">
+              <span>What is the upload validation panel?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">
+              After a successful upload, a parse preview panel appears below the upload fields. It confirms what the tool detected in your files before you run the analysis.<br><br>
+              <strong>QuestionMark:</strong> The panel appears once <em>both</em> the results file and the answer key are uploaded successfully. It shows both filenames, student and question counts, EN/FR stream breakdown, the answer key for the first 10 questions, and a sample of the first 5 student rows. If the question count in the results file doesn't match the key, a mismatch warning appears. If any stream codes are unrecognised, the panel lists each distinct code and how many students used it.<br><br>
+              <strong>Scantron:</strong> The panel appears after the single Scantron file is uploaded. It shows the same information — filename, counts, key preview, and student sample — with unmatched course codes highlighted if any are found.<br><br>
+              In both cases this is a preview only — all students and questions are fully loaded regardless. You can fix Step 1 codes and click <strong>Re-validate</strong> to refresh the stream counts without re-uploading, or click <strong>Re-upload</strong> if the file itself needs replacing. Click <strong>Looks good</strong> to dismiss the panel and proceed.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)">
+              <span>How do I save a record of the analysis for future reference?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">
+              After running an analysis, open the <strong>hamburger menu (≡)</strong> on the analysis screen and select <strong>Save Session Record</strong>. This downloads a structured CSV file with three sections: an exam summary row (student counts, averages, reliability, flagged counts), one row per question with all statistics (p-value, discrimination, flag reason, disposition, EN/FR correct rates, DIF result), and the analysis thresholds in effect.<br><br>
+              The file is named automatically using the exam title and date. It is designed to be imported into Excel, SharePoint, or other tools for longitudinal tracking. The Elentra ID column is included but blank for now — it will be populated in a future release once item ID linking is resolved.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)">
+              <span>Can I change the flagging thresholds?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">
+              Yes — open <strong>Settings</strong> from the hamburger menu. The Analysis Thresholds section has sliders and input fields for all eight configurable thresholds, grouped into MCQ Item Flagging and DIF Analysis. Each group has its own <strong>Reset</strong> button, and a <strong>Reset all to defaults</strong> option is available at the bottom.<br><br>
+              If you change any threshold after running an analysis, a warning banner will appear prompting you to re-run. The defaults match the UGME manual thresholds — only change them if instructed to do so.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- Upload & Setup Issues -->
       <div>
         <div style="font-size:11px;font-weight:700;color:#a31515;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #a31515">Upload &amp; Setup Issues</div>
@@ -5776,7 +6090,10 @@ document.getElementById('fi-key').addEventListener('change',  function(){ if(G._
               <span class="faq-icon">+</span>
             </div>
             <div class="faq-a">
-              First, check that the file is saved as <strong>.xlsx</strong> (not .xls or .csv). Then click <em>details</em> under the upload area for a full diagnostic breakdown — it will tell you exactly what the tool found and what it expected. The most common issues are: a renamed sheet, a modified header row, or a file that was re-saved in a different format. If in doubt, re-export directly from QuestionMark without opening or modifying the file first.
+              The steps depend on your data source:<br><br>
+              <strong>QuestionMark:</strong> Check that the file is saved as <strong>.xlsx</strong> (not .xls or .csv). The most common issues are a renamed sheet, a modified header row, or a file re-saved in a different format. Re-export directly from QuestionMark without modifying the file first.<br><br>
+              <strong>Scantron:</strong> Check that the file is a <strong>.txt</strong> tab-delimited export and that it contains a MASTER row — this is where the tool reads the answer key from. If the MASTER row is missing or the file was exported in the wrong format, re-export from Scantron.<br><br>
+              In both cases, click <strong>See details</strong> on the upload status indicator for a full diagnostic breakdown of what the tool found and what it expected.
             </div>
           </div>
 
@@ -5834,7 +6151,8 @@ document.getElementById('fi-key').addEventListener('change',  function(){ if(G._
               <span class="faq-icon">+</span>
             </div>
             <div class="faq-a">
-              The tool will detect the change and mark the current results as potentially outdated. An amber warning banner will appear on the setup screen, and the Run Analysis button will change to <strong>Update Analysis</strong>. Your previous results are still accessible via <em>View stale results</em>, but they reflect the old settings. Re-run the analysis to generate fresh results with the updated settings. Changes to the exam title or date do not trigger this warning — they are cosmetic and don't affect the analysis.
+              The tool will detect the change and mark the current results as potentially outdated. An amber warning banner will appear — on the setup page and on the analysis page if you are already there — and the Run Analysis button will change to <strong>Update Analysis</strong>. Your previous results are still accessible via <em>View stale results</em>, but they reflect the old settings. Re-run the analysis to generate fresh results.<br><br>
+              This warning is triggered by: re-uploading a file, changing stream codes, toggling DIF on or off, or changing any analysis threshold in Settings. Changes to the exam title or date do not trigger it — they are cosmetic only.
             </div>
           </div>
 
